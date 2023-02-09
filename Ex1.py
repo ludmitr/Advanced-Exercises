@@ -13,17 +13,41 @@ def list_prime (prime_index:int) -> int:
     >>> last_prime(5)
     11
     """
+    prime_list = [1,2]
+    highest_prime = 2
     if prime_index == 1:
-        return 2
+        return prime_list[0]
     elif prime_index == 2:
-        return 3
+        return prime_list[1]
     else:
-        prime_index -=2
-        if (prime_index % 2 ) != 0:
-            return 6*prime_index -1
-        else:
-            return 6*prime_index +1
+        while len(prime_list) == prime_index:
+            highest_prime +=1
+            is_prime = True
+            for x in range(2,int((highest_prime+1)/2) ):
+                if (highest_prime % x) == 0:
+                    is_prime = False
+            if is_prime:
+                prime_list.append(highest_prime)
+                # if highest_prime % x != 0
+                
+def prime_check(num:int)-> bool:
+    """
+    checking if this number is prime
+
+    Parameters:
+    num(int): number to check if its prime
+
+    Returns
+    True: if its a prime number
+    False: if its not a prime number
+    """
+    is_prime = True
+    
+    for x in range(2,int((num+2)/2) ):
+                if (num % x) == 0:
+                    is_prime = False
+
+    return is_prime
 
 
-
-print(list_prime(10001))
+print(prime_check())
