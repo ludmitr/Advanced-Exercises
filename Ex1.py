@@ -1,5 +1,19 @@
 def list_prime (prime_index:int) -> int:
-    
+    """"
+    Desctiprion:
+    calculate the prime number of a given index
+
+    Parameters:
+    prime_index(int): the index of a prime number to be calculated
+
+    Returns:
+    int: the prime number
+
+    Example:
+    >>> last_prime(5)
+    11
+
+    """
     if prime_index == 1:
         return 2
     elif prime_index == 2:
