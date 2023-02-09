@@ -1,6 +1,8 @@
+import math
+
 def lathice_path(x:int,y:int):
     """
-    recursive function that will return number of paths
+    function that will return number of paths
 
     Parameters:
     x(int): represent x position of a point
@@ -10,14 +12,10 @@ def lathice_path(x:int,y:int):
     count(int): number of path to reach (x,y) point avaible
     
     """
-    if x == 0 and y == 0:
-        return 1
+    binom_n = x+y
+    binom_k = x
+    return math.comb(binom_n,binom_k)
 
-    count = 0
 
-    if x > 0:
-        count += lathice_path(x-1,y)
-    if y > 0:
-        count += lathice_path(x,y-1) 
-    
-    return count
+
+print(lathice_path(20,20))
