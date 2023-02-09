@@ -42,6 +42,7 @@ def prime_check(num:int)-> bool:
         return True
     if num == 3:
         return True
+    # every prime number can be represented as 6n-1 or 6n+1    
     if num % 6 in [1,5]:  
         is_prime = True
         for x in range(2,int((num+2)/2) ):
