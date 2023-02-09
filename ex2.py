@@ -13,7 +13,7 @@ def lathice_path(x:int,y:int):
     
     """
     binom_n = x+y
-    binom_k = 2
+    binom_k = x
 
     if binom_k == 1 or y == binom_n:
         return(1)
