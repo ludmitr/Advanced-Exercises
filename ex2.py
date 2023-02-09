@@ -12,8 +12,7 @@ def lathice_path(x:int,y:int):
     count(int): number of path to reach (x,y) point avaible
     
     """
-    x = int(input("Enter a value for x: "))
-    y = int(input("Enter a value for y: "))
+
 
     if y == 1 or y == x:
         return(1)
@@ -26,4 +25,4 @@ def lathice_path(x:int,y:int):
         div = a // (b*(x-y))
         return(div) 
 
-print(lathice_path(20,20))
+print(lathice_path(2,2))
