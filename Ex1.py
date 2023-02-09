@@ -1,4 +1,4 @@
-def list_prime (prime_index:int) -> int:
+def prime_number (prime_index:int) -> int:
     """"
     Desctiprion:
     calculate the prime number of a given index
@@ -51,4 +51,4 @@ def prime_check(num:int)-> bool:
     return is_prime
 
 
-print(list_prime(10001))
+print(prime_number(10001))
