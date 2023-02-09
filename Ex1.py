@@ -12,7 +12,6 @@ def list_prime (prime_index:int) -> int:
     Example:
     >>> last_prime(5)
     11
-
     """
     if prime_index == 1:
         return 2
