@@ -52,4 +52,4 @@ def prime_check(num:int)-> bool:
     return is_prime
 
 
-print(prime_number(10001))
+print(prime_number(100))
