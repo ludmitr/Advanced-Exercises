@@ -2,7 +2,9 @@
 # It turns out that the conjecture was false.
 # What is the smallest odd composite that cannot be written as the sum of a prime and twice a square?
 import sympy
-def find_exception()-> int:
+
+
+def find_exception() -> int:
     oddcomp_nums = [4,6,8,9,10]
     while True:
         check_num = oddcomp_nums[-1]
