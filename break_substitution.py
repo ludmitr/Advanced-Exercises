@@ -1,7 +1,14 @@
 import string
-import os
+import chardet
 
-book = "C:\Users\ASUS\Downloads\encrypted_book.txt"
+book = "encrypted_book.txt"
+
+
+def get_book_content(file_path):
+    with open(file_path, encoding="utf8") as handle:
+        return handle.read()
+
+
 def encrypt_char(char, key):
     key = key % 26
     decimal_a, decimal_y, decimal_A, decimal_Y = 97, 122, 65, 90
@@ -38,14 +45,9 @@ def decrypt_caesar(ciphertext, key):
     return uncrypred_text
 
 
-
 def main():
-    # current_path = os.path.abspath(__file__)
-    # print(current_path)
-    with open(book, 'r') as opened_file:
-        opened_file.read()[:100]
-
-
+    encrypted_book = get_book_content(book)
+    print(encrypted_book)
 
 
 if __name__ == "__main__":
