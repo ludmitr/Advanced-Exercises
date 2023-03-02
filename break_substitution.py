@@ -1,5 +1,4 @@
 import string
-import chardet
 
 book = "encrypted_book.txt"
 
@@ -43,6 +42,23 @@ def decrypt_caesar(ciphertext, key):
     for char in ciphertext:
       uncrypred_text += encrypt_char(char, key)
     return uncrypred_text
+
+def frequency_analysis(text: str):
+    """
+    Creating dictionary where key is char and value is frequency of it occur in the text
+    Returns:(dict) key is char(str) and val(int) its frequency
+    """
+    chars_frequency_dictionary = {}
+    # removing upper case for analysis. assumptions of exercise  The mapping for the lower and the upper letters are the same
+    text = text.lower()
+    for char in text:
+        #if char in letters(upper and lower casse)
+        if char in string.ascii_letters:
+            #if char not in dictionary - adding to dictionary and assigning value to 0
+            if char not in chars_frequency_dictionary:
+                chars_frequency_dictionary[char] = 0
+            chars_frequency_dictionary[char] += 1
+    return chars_frequency_dictionary
 
 
 def main():
