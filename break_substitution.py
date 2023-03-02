@@ -8,6 +8,26 @@ def get_book_content(file_path):
         return handle.read()
 
 
+def sort_dictionary_by_value(dictionary: dict):
+    """
+    Creates dictionary with descending order by its value
+
+    Returns:(dict) dictionary with descending order by its value
+    """
+    # creating copy of dictionary for local logic
+    temp_dictionary = dictionary.copy()
+    descending_dictionary = {}
+    for x in range(len(dictionary)):
+        highest_value, highest_key = 0, ""
+        for key, val in temp_dictionary.items():
+            if val > highest_value:
+                highest_value = val
+                highest_key = key
+
+        descending_dictionary[highest_key] = highest_value
+        del temp_dictionary[highest_key]
+    return descending_dictionary
+
 def frequency_analysis(text: str):
     """
     Creating dictionary where key is char and value is frequency of it occur in the text
