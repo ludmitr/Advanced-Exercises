@@ -49,7 +49,7 @@ def frequency_analysis(text: str):
 
     return chars_frequency_dictionary
 
-def decrypt_text(text,dictionary):
+def decrypt_text(text):
     new_dictionary = {
         "i":"e", "k":"t", "x":"a", "u":"o", "t":"i",
         "w":"n", "a":"s", "r":"r", "f":"h", "c":"d",
@@ -66,19 +66,19 @@ def decrypt_text(text,dictionary):
             if char.islower():
                 new_text += new_dictionary[char]
             else:
-                new_text += new_dictionary[char].upper()
-
+                new_text += (new_dictionary[char.lower()]).upper()
+            continue
+        new_text += char
 
     return new_text
 def main():
     encrypted_book = get_book_content(book_file_name)
     temp_dictionary = frequency_analysis(encrypted_book)
     temp_dictionary = sort_dictionary_by_value(temp_dictionary)
-    temp_dictionary = decrypt_text(encrypted_book,temp_dictionary)
+    temp_dictionary = decrypt_text(encrypted_book)
 
     print(temp_dictionary)
-    # for x, y in temp_dictionary.items():
-    #     print(f"{x}:  {y}")
+
 
 
 if __name__ == "__main__":
