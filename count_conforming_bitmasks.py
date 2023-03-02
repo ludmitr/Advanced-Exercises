@@ -47,10 +47,6 @@ def create_binary_variations(num):
 
     return main_list
 
-    return b_number,dict_number
-
-
-
 
 def main():
     a = conforming_numbers(bin(455)[2:])
