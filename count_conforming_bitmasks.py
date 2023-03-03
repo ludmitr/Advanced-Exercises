@@ -47,6 +47,14 @@ def conforming_numbers(b_number: str) -> list:
     return conforming_list
 
 
+def binary_variations_plus_one(variation_list: list):
+    new_list = variation_list.copy()
+    for x in [0, 1]:
+        for var in variation_list:
+            new_list.append(var + str(x))
+    return new_list
+
+
 def create_binary_variations(num):
     """
     Generate all possible variation for a group of variables when each variable can be 0 or 1.
