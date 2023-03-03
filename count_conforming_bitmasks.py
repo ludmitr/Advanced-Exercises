@@ -1,3 +1,4 @@
+import random
 """
 Write a function:
 
@@ -7,11 +8,19 @@ that, given three unsigned 30-bit integers A, B and C, returns the number of
 unsigned 30-bit integers conforming to at least one of the given integers.
 https://app.codility.com/programmers/trainings/9/count_conforming_bitmasks/
 """
+
+
 def solution(a: int, b: int, c: int):
     conforming_list_a = conforming_numbers(bin(a)[2:])
     conforming_list_b = conforming_numbers(bin(b)[2:])
     conforming_list_c = conforming_numbers(bin(c)[2:])
-
+    for num in conforming_list_a:
+        if num in conforming_list_b:
+            conforming_list_b.remove(num)
+    for num in conforming_list_b:
+        if num in conforming_list_c:
+            conforming_list_c.remove(num)
+    return conforming_list_a + conforming_list_b + conforming_list_c
 def conforming_numbers(b_number: str) -> list:
     """
     function counts all possible binary numbers that conforming b_number
@@ -39,6 +48,14 @@ def conforming_numbers(b_number: str) -> list:
     return conforming_list
 
 def create_binary_variations(num):
+    """
+    Generate all 
+    Args:
+        num:
+
+    Returns:
+
+    """
     main_list = []
     for i in range(1,2 ** num):
         binary_string = format(i, '0{}b'.format(num))
@@ -49,10 +66,10 @@ def create_binary_variations(num):
 
 
 def main():
-    a = conforming_numbers(bin(455)[2:])
-    for x in a:
-        print(x)
-
+    r_num = random.randint(0, 33333333)
+    a = conforming_numbers(bin(r_num)[2:])
+    print(a)
+    print(f"random num is: {r_num}, binary representation: {bin(r_num)[2:]} \n total numbers that conform our num is {len(a)}")
 
 if __name__ == "__main__":
     main()
