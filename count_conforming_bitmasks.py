@@ -1,4 +1,3 @@
-import random
 """
 Write a function:
 
@@ -14,13 +13,12 @@ def solution(a: int, b: int, c: int):
     conforming_list_a = conforming_numbers(bin(a)[2:])
     conforming_list_b = conforming_numbers(bin(b)[2:])
     conforming_list_c = conforming_numbers(bin(c)[2:])
-    for num in conforming_list_a:
-        if num in conforming_list_b:
-            conforming_list_b.remove(num)
-    for num in conforming_list_b:
-        if num in conforming_list_c:
-            conforming_list_c.remove(num)
-    return conforming_list_a + conforming_list_b + conforming_list_c
+
+    # merging lists together and removing duplicates
+    merged_list = conforming_list_a + conforming_list_b + conforming_list_c
+    merged_list = list(set(merged_list))
+
+    return merged_list
 def conforming_numbers(b_number: str) -> list:
     """
     function counts all possible binary numbers that conforming b_number
@@ -41,23 +39,24 @@ def conforming_numbers(b_number: str) -> list:
     for list in variations_list:
         counter = 0
         temp_number = b_number
+        # creating new binary number using saved indexes for each 0 in bnumber
         for index in zero_indexes_list:
             temp_number = temp_number[:index] + str(list[counter]) + temp_number[index+1:]
             counter += 1
         conforming_list.append(temp_number)
     return conforming_list
 
+
 def create_binary_variations(num):
     """
-    Generate all 
-    Args:
-        num:
+    Generate all possible variation for a group of variables when each variable can be 0 or 1.
+    Length of the group defined by Parameter: num
 
-    Returns:
+    Returns:(list) each element of list is list of integers that represent one case of variation
 
     """
     main_list = []
-    for i in range(1,2 ** num):
+    for i in range(0, 2 ** num):
         binary_string = format(i, '0{}b'.format(num))
         new_list = [int(bit) for bit in binary_string]
         main_list.append(new_list)
@@ -66,10 +65,13 @@ def create_binary_variations(num):
 
 
 def main():
-    r_num = random.randint(0, 33333333)
-    a = conforming_numbers(bin(r_num)[2:])
-    print(a)
-    print(f"random num is: {r_num}, binary representation: {bin(r_num)[2:]} \n total numbers that conform our num is {len(a)}")
+    a = 1073741727
+    b = 1073741631
+    c = 1073741679
+    total = solution(a, b, c)
+    print(total)
+    print(f"the number is : {len(total)}")
+
 
 if __name__ == "__main__":
     main()
