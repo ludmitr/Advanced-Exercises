@@ -23,7 +23,7 @@ def solution(a: int, b: int, c: int):
 
     a_b, a_c = count_common(list(set(a_list[1] + b_list[1]))), count_common(list(set(a_list[1] + c_list[1])))
     b_c, a_b_c = count_common(list(set(b_list[1] + c_list[1]))), count_common(list(set(a_list[1] + b_list[1] + c_list[1])))
-    common = a_b + ac + b_c - a_b_c
+    common = a_b + a_c + b_c - a_b_c
     return a_list[0] + b_list[0] + c_list[0] - common
 
 def conforming_numbers(b_number: str) -> list:
