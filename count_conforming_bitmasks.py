@@ -16,9 +16,10 @@ def count_common(positions: list):
     """
     one_in_bin = len(positions)
     return 2**(30-one_in_bin)
+
+
 def solution(a: int, b: int, c: int):
     solution_list = []
-
 
     a_list = conforming_numbers(bin(a)[2:])
     if a_list[0] == 0: return 2**30
@@ -42,7 +43,6 @@ def conforming_numbers(b_number: str) -> list:
     Returns:(list). return listo of int and list. int is  amount of binary numbers 0 -
     2**30 that conform bnumber and list with indexes, each index represent position of 1 in binary number
     """
-
     if b_number == "0":
         return [0, []]
     b_length = len(b_number)
