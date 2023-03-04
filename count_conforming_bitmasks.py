@@ -7,44 +7,47 @@ that, given three unsigned 30-bit integers A, B and C, returns the number of
 unsigned 30-bit integers conforming to at least one of the given integers.
 https://app.codility.com/programmers/trainings/9/count_conforming_bitmasks/
 """
-
-
+def count_common(positions: list):
+    one_in_bin = len(positions)
+    return 2**(30-one_in_bin)
 def solution(a: int, b: int, c: int):
-    conforming_list_a = conforming_numbers(bin(a)[2:])
-    conforming_list_b = conforming_numbers(bin(b)[2:])
-    conforming_list_c = conforming_numbers(bin(c)[2:])
+    solution_list = []
 
-    # merging lists together and removing duplicates
-    merged_list = conforming_list_a + conforming_list_b + conforming_list_c
-    merged_list = list(set(merged_list))
 
-    return merged_list
+    a_list = conforming_numbers(bin(a)[2:])
+    if a_list[0] == 0: return 2**30
+    b_list = conforming_numbers(bin(b)[2:])
+    if b_list[0] == 0: return 2 ** 30
+    c_list = conforming_numbers(bin(c)[2:])
+    if c_list[0] == 0: return 2 ** 30
+
+    a_b, a_c = count_common(list(set(a_list[1] + b_list[1]))), count_common(list(set(a_list[1] + c_list[1])))
+    b_c, a_b_c = count_common(list(set(b_list[1] + c_list[1]))), count_common(list(set(a_list[1] + b_list[1] + c_list[1])))
+    common = a_b + b_c + b_c - a_b_c
+    return a_list[0] + b_list[0] + c_list[0] - common
+
 def conforming_numbers(b_number: str) -> list:
     """
-    function counts all possible binary numbers that conforming b_number
-    Args:
-        b_number: (str)
 
-    Returns: list of all possible binary numbers that conforming b_number. each element in list is a string
+    Args:
+        b_number: binary number in string
+
+    Returns:(list). return listo of int and list. int is  amount of binary numbers 0 -
+    2**30 that conform bnumber and list with indexes, each index represent position of 1 in binary number
 
     """
-    zero_indexes_list = []
-    conforming_list = []
-    # creating list where each element is original index of 0 in b_number
-    for x in range(len(b_number)):
-        if b_number[x] == "0": zero_indexes_list.append(x)
 
-    variations_list = create_binary_variations(len(zero_indexes_list))
-    # creating list of binary numbers that conform b_number
-    for list in variations_list:
-        counter = 0
-        temp_number = b_number
-        # creating new binary number using saved indexes for each 0 in bnumber
-        for index in zero_indexes_list:
-            temp_number = temp_number[:index] + str(list[counter]) + temp_number[index+1:]
-            counter += 1
-        conforming_list.append(temp_number)
-    return conforming_list
+    if b_number == "0":
+        return [0, []]
+    b_lenghth = len(b_number)
+    b_number = "0" * (30 - b_lenghth) + b_number
+    one_indexes_list = []
+    for x in range(len(b_number)):
+        if b_number[x] == "1":  one_indexes_list.append(x)
+
+    number_of_zeroes = 30 - len(one_indexes_list)
+
+    return [2**number_of_zeroes, one_indexes_list]
 
 
 def binary_variations_plus_one(variation_list: list):
@@ -55,31 +58,13 @@ def binary_variations_plus_one(variation_list: list):
     return new_list
 
 
-def create_binary_variations(num):
-    """
-    Generate all possible variation for a group of variables when each variable can be 0 or 1.
-    Length of the group defined by Parameter: num
 
-    Returns:(list) each element of list is list of integers that represent one case of variation
-
-    """
-    main_list = []
-    for i in range(0, 2 ** num):
-        binary_string = format(i, '0{}b'.format(num))
-        new_list = [int(bit) for bit in binary_string]
-        main_list.append(new_list)
-
-    return main_list
 
 
 def main():
-    a = 1073741727
-    b = 1073741631
-    c = 1073741679
-    total = solution(a, b, c)
-    print(total)
-    print(f"the number is : {len(total)}")
 
+    print(solution(1073741727, 1073741631, 1073741679))
+    a = conforming_numbers(bin(1023)[2:])
 
 if __name__ == "__main__":
     main()
